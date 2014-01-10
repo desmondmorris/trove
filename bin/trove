@@ -1,0 +1,97 @@
+#!/usr/bin/env node
+
+var VERSION = require('../package.json').version;
+var program = require('commander');
+var Trove = require('../lib/trove');
+var trove = new Trove();
+var fs = require('fs');
+
+program.version(VERSION);
+
+program
+  .command('list')
+  .description('list all items in the trove')
+  .action(function(){
+    var size = Object.keys(trove.config).length;
+    console.log(size + ' item in the trove');
+
+    for (var item in trove.config) {
+      console.log(item + ': "' + trove.config[item] + '"');
+    }
+  });
+
+program
+  .command('get [item] [output]')
+  .description('get item from the trove')
+  .action(function(item, output){
+    if (typeof item === 'undefined') {
+      console.error('Missing item');
+      return;
+    }
+
+    if (typeof output === 'undefined') {
+      console.error('Missing output file');
+      return;
+    }
+
+    trove.get(item, function(err, body){
+      if (err) {
+        console.error('The item could not retrieved');
+        return;
+      }
+
+      fs.writeFileSync(output, body);
+    });
+
+  });
+
+program
+  .command('add [item] [path]')
+  .description('add item to the trove')
+  .action(function(item, path){
+    if (typeof item === 'undefined') {
+      console.error('Missing item');
+      return;
+    }
+
+    if (typeof path === 'undefined') {
+      console.error('Missing path');
+      return;
+    }
+
+    trove.add(item, path, function(err, success){
+      if (err) {
+        console.error('The item could not be added to the trove');
+        return;
+      }
+
+      if (success === true) {
+        console.log(item + ' added');
+      }
+    });
+
+  });
+
+program
+  .command('remove [item]')
+  .description('remove item to the trove')
+  .action(function(item, path){
+    if (typeof item === 'undefined') {
+      console.error('Missing item');
+      return;
+    }
+
+    trove.remove(item, function(err, success){
+      if (err) {
+        console.error('The item could not be removed to the trove');
+        return;
+      }
+
+      if (success === true) {
+        console.log('readme-node removed from the trove');
+      }
+    });
+
+  });
+
+program.parse(process.argv);
