@@ -1,6 +1,6 @@
 {
   "name": "trove",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A simple tool for stashing and grabbing files",
   "main": "lib/trove.js",
   "bin": "./bin/trove",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:desmondmorris/node-trove.git"
+    "url": "git@github.com:desmondmorris/trove.git"
   },
   "keywords": [
     "trove",
@@ -19,7 +19,7 @@
   "author": "Desmond Morris <hi@desmondmorris.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/desmondmorris/node-trove/issues"
+    "url": "https://github.com/desmondmorris/trove/issues"
   },
   "dependencies": {
     "request": "*",
