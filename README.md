@@ -20,7 +20,7 @@ trove add mit-license https://gist.github.com/desmondmorris/8346808/raw/421eed3d
 Later, I can download it and name it "LICENSE", like this:
 
 ````
-trove get mit-license LICENSE
+trove get mit-license > LICENSE
 ````
 
 I can see all of the items in the trove like this:

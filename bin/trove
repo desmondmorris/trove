@@ -21,16 +21,11 @@ program
   });
 
 program
-  .command('get [item] [output]')
+  .command('get [item]')
   .description('get item from the trove')
-  .action(function(item, output){
+  .action(function(item){
     if (typeof item === 'undefined') {
       console.error('Missing item');
-      return;
-    }
-
-    if (typeof output === 'undefined') {
-      console.error('Missing output file');
       return;
     }
 
@@ -39,8 +34,7 @@ program
         console.error('The item could not retrieved');
         return;
       }
-
-      fs.writeFileSync(output, body);
+      console.log(body)
     });
 
   });
