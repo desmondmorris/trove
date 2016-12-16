@@ -1,6 +1,6 @@
 {
   "name": "trove",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "A simple tool for stashing and grabbing files",
   "main": "lib/trove.js",
   "bin": "./bin/trove",
